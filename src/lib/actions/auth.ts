@@ -3,19 +3,13 @@
 import { redirect } from "next/navigation";
 
 import { auth } from "@/lib/auth/server";
+import type { AuthActionState } from "@/lib/actions/auth-state";
 import { signInSchema, signUpSchema } from "@/lib/validations/auth";
 
-export type AuthActionState = {
-  data: null;
-  error: string | null;
-};
-
-export const initialAuthActionState: AuthActionState = {
-  data: null,
-  error: null,
-};
-
-export async function signUpAction(_prevState: AuthActionState, formData: FormData): Promise<AuthActionState> {
+export async function signUpAction(
+  _prevState: AuthActionState,
+  formData: FormData,
+): Promise<AuthActionState> {
   const parsed = signUpSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
@@ -45,7 +39,10 @@ export async function signUpAction(_prevState: AuthActionState, formData: FormDa
   redirect("/dashboard");
 }
 
-export async function signInAction(_prevState: AuthActionState, formData: FormData): Promise<AuthActionState> {
+export async function signInAction(
+  _prevState: AuthActionState,
+  formData: FormData,
+): Promise<AuthActionState> {
   const parsed = signInSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),

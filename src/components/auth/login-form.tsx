@@ -3,7 +3,8 @@
 import { useActionState } from "react";
 import Link from "next/link";
 
-import { initialAuthActionState, signInAction } from "@/lib/actions/auth";
+import { signInAction } from "@/lib/actions/auth";
+import { initialAuthActionState } from "@/lib/actions/auth-state";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

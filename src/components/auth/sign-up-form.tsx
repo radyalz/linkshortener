@@ -3,34 +3,21 @@
 import { useActionState } from "react";
 import Link from "next/link";
 
-import {
-  initialAuthActionState,
-  signUpAction,
-} from "@/lib/actions/auth";
+import { signUpAction } from "@/lib/actions/auth";
+import { initialAuthActionState } from "@/lib/actions/auth-state";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function SignUpForm() {
-  const [state, formAction, isPending] = useActionState(
-    signUpAction,
-    initialAuthActionState,
-  );
+  const [state, formAction, isPending] = useActionState(signUpAction, initialAuthActionState);
 
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle>Create an account</CardTitle>
-        <CardDescription>
-          Sign up to create and manage short links.
-        </CardDescription>
+        <CardDescription>Sign up to create and manage short links.</CardDescription>
       </CardHeader>
 
       <CardContent>
@@ -50,9 +37,7 @@ export function SignUpForm() {
             <Input id="password" name="password" type="password" required />
           </div>
 
-          {state.error ? (
-            <p className="text-sm text-destructive">{state.error}</p>
-          ) : null}
+          {state.error ? <p className="text-sm text-destructive">{state.error}</p> : null}
 
           <Button type="submit" className="w-full" disabled={isPending}>
             {isPending ? "Creating account..." : "Sign up"}
