@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { CreateLinkForm } from "@/components/links/create-link-form";
+import { CopyButton } from "@/components/links/copy-button";
+import { DeleteLinkDialog } from "@/components/links/delete-link-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { signOutAction } from "@/lib/actions/auth";
@@ -17,7 +20,7 @@ export default async function DashboardPage() {
   }
 
   const links = await getLinksByUserId(session.user.id);
-
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
   return (
     <main className="min-h-screen p-6">
       <div className="mx-auto max-w-5xl space-y-8">
@@ -55,13 +58,26 @@ export default async function DashboardPage() {
                     <p>
                       <span className="font-medium">Slug:</span> /r/{link.slug}
                     </p>
+
                     <p className="break-all">
                       <span className="font-medium">Destination:</span> {link.destinationUrl}
                     </p>
+
                     <p>
                       <span className="font-medium">Clicks:</span> {link.clickCount}
                     </p>
+
                     <p className="text-muted-foreground">Created: {link.createdAt.toLocaleDateString()}</p>
+
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      <CopyButton value={`${appUrl}/r/${link.slug}`} />
+
+                      <Button asChild variant="outline" size="sm">
+                        <Link href={`/dashboard/links/${link.id}`}>Details</Link>
+                      </Button>
+
+                      <DeleteLinkDialog linkId={link.id} />
+                    </div>
                   </CardContent>
                 </Card>
               ))}
