@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "@/components/ui/themeToggle";
 import { CreateLinkForm } from "@/components/links/create-link-form";
 import { CopyButton } from "@/components/links/copy-button";
 import { DeleteLinkDialog } from "@/components/links/delete-link-dialog";

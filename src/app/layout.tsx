@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { AppBackground } from "@/components/ui/appBackground";
+import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ThemeProvider } from "@/components/providers/themeProvider";
+import { AppBackground } from "@/components/ui/appBackground";
 import { Toaster } from "@/components/ui/sonner";
+import type { AppTheme } from "@/lib/actions/theme";
 
 import "./globals.css";
 
@@ -22,15 +24,22 @@ export const metadata: Metadata = {
   description: "Create, manage, and track short links.",
 };
 
-export default function RootLayout({
+function getTheme(value: string | undefined): AppTheme {
+  return value === "light" || value === "dark" ? value : "dark";
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const theme = getTheme(cookieStore.get("theme")?.value);
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider>
+    <html lang="en" className={theme} suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider forcedTheme={theme}>
           <AppBackground />
           {children}
           <Toaster richColors position="top-right" />

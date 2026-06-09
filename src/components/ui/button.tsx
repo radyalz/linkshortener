@@ -38,7 +38,7 @@ const buttonVariants = cva(
 
 function Button({
   className,
-  variant = "gold",
+  variant = "default",
   size = "default",
   asChild = false,
   ...props

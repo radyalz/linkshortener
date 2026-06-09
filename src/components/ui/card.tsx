@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 function Card({
   className,
   size = "default",
-  variant = "glass",
+  variant = "default",
   ...props
 }: React.ComponentProps<"div"> & {
   size?: "default" | "sm";
