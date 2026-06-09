@@ -1,45 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
 # Short Link Manager
 
-A small production-quality short link manager built with Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, Drizzle ORM, Neon Postgres, and Neon Auth.
+A production-quality short link manager built with Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, Drizzle ORM, Neon Postgres, and Neon Auth.
 
-Authenticated users can create short links, manage them from a dashboard, copy short URLs, delete links, and track click counts.
+Authenticated users can create short links, manage them from a dashboard, copy short URLs, delete links, track total clicks, and view a simple 7-day click chart for each link.
 
 ## Tech Stack
 
@@ -60,6 +23,7 @@ Authenticated users can create short links, manage them from a dashboard, copy s
 ## Features
 
 - Email/password sign up and login
+- Log out
 - Protected dashboard route
 - Create short links with optional custom slugs
 - Server-side validation with Zod
@@ -76,8 +40,162 @@ Authenticated users can create short links, manage them from a dashboard, copy s
 
 ## Local Setup
 
+Clone the repository:
+
+```bash
+git clone https://github.com/radyalz/linkshortener.git
+cd linkshortener
+```
+
 Install dependencies:
 
 ```bash
 pnpm install
 ```
+
+Create a `.env.local` file:
+
+```env
+DATABASE_URL="your-neon-postgres-connection-string"
+
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+
+NEON_AUTH_BASE_URL="your-neon-auth-url"
+NEON_AUTH_COOKIE_SECRET="your-random-cookie-secret"
+```
+
+Generate a cookie secret:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+```
+
+Generate Drizzle migrations:
+
+```bash
+pnpm db:generate
+```
+
+Run migrations:
+
+```bash
+pnpm db:migrate
+```
+
+Start the development server:
+
+```bash
+pnpm dev
+```
+
+Open the app:
+
+```text
+http://localhost:3000
+```
+
+## Environment Variables
+
+| Variable | Description |
+| --- | --- |
+| `DATABASE_URL` | Neon Postgres connection string |
+| `NEXT_PUBLIC_APP_URL` | Base app URL used for full short links |
+| `NEON_AUTH_BASE_URL` | Neon Auth URL from the Neon dashboard |
+| `NEON_AUTH_COOKIE_SECRET` | Random secret used for Neon Auth cookies |
+
+## Database
+
+The app uses two main tables:
+
+### `links`
+
+Stores each user's short links.
+
+Main fields:
+
+- `id`
+- `userId`
+- `slug`
+- `title`
+- `destinationUrl`
+- `clickCount`
+- `createdAt`
+- `updatedAt`
+
+### `clicks`
+
+Stores individual click events for analytics.
+
+Main fields:
+
+- `id`
+- `linkId`
+- `clickedAt`
+
+## Scripts
+
+```bash
+pnpm dev
+```
+
+Starts the local development server.
+
+```bash
+pnpm build
+```
+
+Builds the app for production.
+
+```bash
+pnpm start
+```
+
+Starts the production build.
+
+```bash
+pnpm lint
+```
+
+Runs linting.
+
+```bash
+pnpm db:generate
+```
+
+Generates Drizzle migration files from the schema.
+
+```bash
+pnpm db:migrate
+```
+
+Runs migrations against the Neon Postgres database.
+
+```bash
+pnpm db:studio
+```
+
+Opens Drizzle Studio.
+
+## Decisions I Made
+
+The brief says custom slugs should be unique per user, but the redirect route is `/r/[slug]`, which does not include a user identifier. If two different users created the same slug, the app would not know which destination URL to redirect to. To avoid that ambiguity, I made slugs globally unique.
+
+I used Server Actions for mutations such as sign up, login, logout, creating links, and deleting links. Database logic is kept in `src/lib/db/` instead of being placed directly inside React components.
+
+I used shadcn/ui components installed through the CLI instead of hand-rolling UI primitives, as requested in the brief. I also kept the project intentionally small and avoided extra features such as teams, paid plans, QR codes, or advanced analytics dashboards.
+
+## How I Used AI Tools
+
+I used AI tools as a development assistant to help plan the project structure, break the work into small steps, and compare the implementation against the test brief. I used AI to speed up repetitive setup tasks such as creating route files, Server Actions, validation schemas, and UI component structure. I reviewed and tested the code as I went, especially with `pnpm build`, because AI suggestions sometimes needed adjustment for the exact package versions, file names, or Windows PowerShell behavior. AI was especially useful for debugging setup issues with pnpm build approvals, missing shadcn utility files, Drizzle configuration, and organizing the app around Next.js App Router conventions. The final implementation decisions, testing, commits, and fixes were made while checking the actual project behavior locally.
+
+## Deployed URL
+
+TODO: Add Vercel URL after deployment.
+
+## GitHub Repo
+
+https://github.com/radyalz/linkshortener
+
+## License
+
+MIT License. See `LICENSE`.
