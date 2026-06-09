@@ -206,3 +206,24 @@ Add production env vars
 Test live app
 Update README with deployed URL
 Final push
+
+## not done based on me
+ui is to much simple 
+still the dark mode light mode has issues 
+i think some of the ui's are dull and need fixing 
+database manager of the user is shit and there is no role for it so i need it to be fixxed 
+there is no lang 
+and there is no animation
+the analytics is simple we could make it beeter
+we could add stuff to the ui to make it better 
+
+
+
+what we did now after doing anything after ai 
+
+1. Fix/verify Neon Auth session plumbing
+2. Add app-side roles/user_profiles/login_events tables
+3. Record successful/failed login attempts
+4. Attach every logged-in user to a default role
+
+
