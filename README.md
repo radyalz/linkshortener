@@ -96,11 +96,11 @@ http://localhost:3000
 
 ## Environment Variables
 
-| Variable | Description |
-| --- | --- |
-| `DATABASE_URL` | Neon Postgres connection string |
-| `NEXT_PUBLIC_APP_URL` | Base app URL used for full short links |
-| `NEON_AUTH_BASE_URL` | Neon Auth URL from the Neon dashboard |
+| Variable                  | Description                              |
+| ------------------------- | ---------------------------------------- |
+| `DATABASE_URL`            | Neon Postgres connection string          |
+| `NEXT_PUBLIC_APP_URL`     | Base app URL used for full short links   |
+| `NEON_AUTH_BASE_URL`      | Neon Auth URL from the Neon dashboard    |
 | `NEON_AUTH_COOKIE_SECRET` | Random secret used for Neon Auth cookies |
 
 ## Database
@@ -199,3 +199,7 @@ https://github.com/radyalz/linkshortener
 ## License
 
 MIT License. See `LICENSE`.
+
+## not done
+- config to vercell
+- checking eveything 
