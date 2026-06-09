@@ -9,3 +9,10 @@ export const initialLinkActionState: LinkActionState = {
   data: null,
   error: null,
 };
+
+export type DeleteLinkActionResult = {
+  data: {
+    id: string;
+  } | null;
+  error: string | null;
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 
@@ -12,13 +13,18 @@ export function CopyButton({ value }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(value);
+    try {
+      await navigator.clipboard.writeText(value);
 
-    setCopied(true);
+      setCopied(true);
+      toast.success("Short URL copied to clipboard.");
 
-    window.setTimeout(() => {
-      setCopied(false);
-    }, 1500);
+      window.setTimeout(() => {
+        setCopied(false);
+      }, 1500);
+    } catch {
+      toast.error("Could not copy the short URL.");
+    }
   }
 
   return (

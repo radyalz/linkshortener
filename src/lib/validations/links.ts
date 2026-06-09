@@ -31,26 +31,14 @@ export const createLinkSchema = z.object({
 
   slug: z.preprocess(
     emptyStringToUndefined,
-    z
-      .string()
-      .trim()
-      .min(1, "Slug cannot be empty.")
-      .max(64, "Slug must be 64 characters or less.")
-      .regex(
-        slugRegex,
-        "Slug can only contain letters, numbers, and dashes.",
-      )
-      .optional(),
+    z.string().trim().min(1, "Slug cannot be empty.").max(64, "Slug must be 64 characters or less.").regex(slugRegex, "Slug can only contain letters, numbers, and dashes.").optional(),
   ),
 
-  title: z.preprocess(
-    emptyStringToUndefined,
-    z
-      .string()
-      .trim()
-      .max(120, "Title must be 120 characters or less.")
-      .optional(),
-  ),
+  title: z.preprocess(emptyStringToUndefined, z.string().trim().max(120, "Title must be 120 characters or less.").optional()),
 });
 
 export type CreateLinkInput = z.infer<typeof createLinkSchema>;
+
+export const deleteLinkSchema = z.object({
+  linkId: z.string().uuid("Invalid link id."),
+});
