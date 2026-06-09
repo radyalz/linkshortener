@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AppBackground } from "@/components/ui/appBackground";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
+          <AppBackground />
           {children}
           <Toaster richColors position="top-right" />
         </ThemeProvider>

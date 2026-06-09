@@ -24,3 +24,83 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes float-slow {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(8%, 6%, 0) scale(1.08);
+  }
+}
+
+@keyframes float-medium {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(-6%, 10%, 0) scale(1.12);
+  }
+}
+
+@keyframes float-slower {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(-8%, -7%, 0) scale(1.1);
+  }
+}
+
+@keyframes star-drift {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 15s ease-in-out infinite alternate;
+}
+
+.animate-float-medium {
+  animation: float-medium 18s ease-in-out infinite alternate;
+}
+
+.animate-float-slower {
+  animation: float-slower 20s ease-in-out infinite alternate;
+}
+
+.animate-star-drift {
+  animation-name: star-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.glass-panel {
+  border: 1px solid rgba(250, 204, 21, 0.22);
+  background: linear-gradient(135deg, rgba(24, 24, 37, 0.78), rgba(49, 27, 77, 0.5)), rgba(15, 15, 20, 0.55);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(90deg, #fde68a, #f59e0b, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
