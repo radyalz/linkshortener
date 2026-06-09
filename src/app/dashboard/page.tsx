@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CreateLinkForm } from "@/components/links/create-link-form";
 import { CopyButton } from "@/components/links/copy-button";
 import { DeleteLinkDialog } from "@/components/links/delete-link-dialog";
@@ -30,11 +30,15 @@ export default async function DashboardPage() {
             <p className="text-muted-foreground">Logged in as {session.user.email}</p>
           </div>
 
-          <form action={signOutAction}>
-            <Button type="submit" variant="outline">
-              Log out
-            </Button>
-          </form>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+
+            <form action={signOutAction}>
+              <Button type="submit" variant="outline">
+                Log out
+              </Button>
+            </form>
+          </div>
         </header>
 
         <CreateLinkForm />
