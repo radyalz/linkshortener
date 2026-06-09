@@ -184,7 +184,7 @@ body {
 
 .animate-star-drift {
   animation-name: star-drift;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
@@ -195,7 +195,7 @@ body {
     0 24px 80px rgba(120, 70, 20, 0.13),
     0 8px 32px rgba(168, 85, 247, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.76);
-  backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(4px) saturate(200%);
 }
 
 .dark .glass-panel {
