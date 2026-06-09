@@ -200,7 +200,7 @@ https://github.com/radyalz/linkshortener
 
 MIT License. See `LICENSE`.
 
-## not done
+## not done based on breif
 Deploy to Vercel
 Add production env vars
 Test live app
