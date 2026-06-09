@@ -35,3 +35,49 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+# Short Link Manager
+
+A small production-quality short link manager built with Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, Drizzle ORM, Neon Postgres, and Neon Auth.
+
+Authenticated users can create short links, manage them from a dashboard, copy short URLs, delete links, and track click counts.
+
+## Tech Stack
+
+- Next.js 16 App Router
+- TypeScript with strict mode
+- Tailwind CSS v4
+- shadcn/ui
+- Drizzle ORM
+- Neon Postgres
+- Neon Auth
+- Server Actions
+- Zod
+- next-themes
+- sonner
+- Recharts
+- pnpm
+
+## Features
+
+- Email/password sign up and login
+- Protected dashboard route
+- Create short links with optional custom slugs
+- Server-side validation with Zod
+- Random 6-character slug generation
+- Dashboard link list
+- Copy-to-clipboard button
+- Delete confirmation dialog
+- Redirect route at `/r/[slug]`
+- Click count tracking
+- Link detail page with a 7-day clicks chart
+- Dark mode toggle
+- Loading and error boundaries
+- Toast notifications
+
+## Local Setup
+
+Install dependencies:
+
+```bash
+pnpm install
+```
