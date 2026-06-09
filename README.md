@@ -201,5 +201,8 @@ https://github.com/radyalz/linkshortener
 MIT License. See `LICENSE`.
 
 ## not done
-- config to vercell
-- checking eveything 
+Deploy to Vercel
+Add production env vars
+Test live app
+Update README with deployed URL
+Final push
