@@ -2,10 +2,9 @@ import Link from "next/link";
 
 import { LiveLinkPreview } from "@/components/landing/liveLinkPreview";
 import { Button } from "@/components/ui/button";
-
 export function HeroSection() {
   return (
-    <section className="mx-auto flex min-h-[calc(100vh-96px)] max-w-6xl items-center py-20">
+    <section className="mx-auto max-w-6xl py-20 flex min-h-[calc(100vh-96px)] items-center">
       <div className="grid w-full items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6">
           <p className="reveal-on-load inline-flex rounded-full border border-amber-500/25 bg-amber-400/15 px-4 py-2 text-sm text-amber-900 dark:border-amber-300/25 dark:bg-amber-300/10 dark:text-amber-100">

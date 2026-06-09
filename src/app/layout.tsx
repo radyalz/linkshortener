@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
-
 import { ThemeProvider } from "@/components/providers/themeProvider";
 import { AppBackground } from "@/components/ui/appBackground";
 import { Toaster } from "@/components/ui/sonner";
 import type { AppTheme } from "@/lib/actions/theme";
-
+import { SmoothScrollProvider } from "@/components/providers/smoothScrollProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,7 +40,7 @@ export default async function RootLayout({
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider forcedTheme={theme}>
           <AppBackground />
-          {children}
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
           <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
