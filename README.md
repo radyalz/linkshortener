@@ -227,3 +227,10 @@ what we did now after doing anything after ai
 4. Attach every logged-in user to a default role
 
 
+
+## 4. Commit the auth fix
+
+First remove the temporary debug page after confirming `hasSession: true`:
+
+```powershell
+Remove-Item -Recurse -Force src\app\debug-session
