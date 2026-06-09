@@ -5,31 +5,31 @@
 :root {
   --radius: 0.75rem;
 
-  --background: oklch(0.98 0.015 95);
+  --background: oklch(0.995 0.004 95);
   --foreground: oklch(0.16 0.03 280);
 
-  --card: oklch(0.98 0.012 95);
+  --card: oklch(1 0 0);
   --card-foreground: oklch(0.16 0.03 280);
 
-  --popover: oklch(0.98 0.012 95);
+  --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.16 0.03 280);
 
   --primary: oklch(0.72 0.16 85);
-  --primary-foreground: oklch(0.16 0.03 280);
+  --primary-foreground: oklch(0.12 0.03 280);
 
-  --secondary: oklch(0.92 0.04 295);
+  --secondary: oklch(0.96 0.018 295);
   --secondary-foreground: oklch(0.22 0.05 285);
 
-  --muted: oklch(0.92 0.02 95);
-  --muted-foreground: oklch(0.46 0.04 285);
+  --muted: oklch(0.965 0.012 95);
+  --muted-foreground: oklch(0.42 0.035 285);
 
-  --accent: oklch(0.86 0.08 300);
+  --accent: oklch(0.92 0.045 300);
   --accent-foreground: oklch(0.18 0.04 285);
 
   --destructive: oklch(0.62 0.22 25);
 
-  --border: oklch(0.82 0.035 90);
-  --input: oklch(0.86 0.03 90);
+  --border: oklch(0.88 0.018 90);
+  --input: oklch(0.92 0.012 90);
   --ring: oklch(0.72 0.16 85);
 
   --chart-1: oklch(0.72 0.16 85);
@@ -124,20 +124,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 @keyframes float-slow {
   from {
     transform: translate3d(0, 0, 0) scale(1);
@@ -203,12 +189,13 @@ body {
 }
 
 .glass-panel {
-  border: 1px solid rgba(168, 85, 247, 0.2);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(250, 240, 210, 0.42)), rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(168, 85, 247, 0.24);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 244, 210, 0.7)), rgba(255, 255, 255, 0.62);
   box-shadow:
-    0 24px 80px rgba(120, 70, 20, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(18px) saturate(160%);
+    0 24px 80px rgba(120, 70, 20, 0.13),
+    0 8px 32px rgba(168, 85, 247, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(18px) saturate(170%);
 }
 
 .dark .glass-panel {
@@ -220,6 +207,13 @@ body {
 }
 
 .gold-gradient-text {
+  background: linear-gradient(90deg, #ffd000, rgb(216, 143, 7), #7e22ce);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .gold-gradient-text {
   background: linear-gradient(90deg, #fde68a, #f59e0b, #c084fc);
   -webkit-background-clip: text;
   background-clip: text;
