@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 import type { LinkActionState } from "@/lib/actions/link-state";
 import { auth } from "@/lib/auth/server";
-import { createLink, deleteLinkForUser,getLinkBySlug } from "@/lib/db/queries";
+import { createLink, deleteLinkForUser, getLinkBySlug } from "@/lib/db/queries";
 import { createLinkSchema } from "@/lib/validations/links";
 
 const generateSlug = customAlphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 6);
