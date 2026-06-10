@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ThemeToggle } from "@/components/ui/themeToggle";
-import { CreateLinkForm } from "@/components/links/create-link-form";
+
 import { CopyButton } from "@/components/links/copy-button";
+import { CreateLinkForm } from "@/components/links/create-link-form";
 import { DeleteLinkDialog } from "@/components/links/delete-link-dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { signOutAction } from "@/lib/actions/auth";
 import { auth } from "@/lib/auth/server";
 import { getLinksByUserId } from "@/lib/db/queries";
 
@@ -21,25 +20,14 @@ export default async function DashboardPage() {
 
   const links = await getLinksByUserId(session.user.id);
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
   return (
-    <main className="min-h-screen p-6">
-      <div className="mx-auto max-w-5xl space-y-8">
-        <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">Dashboard</h1>
-            <p className="text-muted-foreground">Logged in as {session.user.email}</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-
-            <form action={signOutAction}>
-              <Button type="submit" variant="outline">
-                Log out
-              </Button>
-            </form>
-          </div>
-        </header>
+    <main className="min-h-screen pb-20">
+      <div className="mx-auto max-w-5xl space-y-8 px-6 pt-6">
+        <section>
+          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p className="mt-2 text-muted-foreground">Create, manage, and track your short links.</p>
+        </section>
 
         <CreateLinkForm />
 

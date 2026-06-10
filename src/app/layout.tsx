@@ -3,9 +3,11 @@ import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/themeProvider";
 import { AppBackground } from "@/components/ui/appBackground";
+import { Header } from "@/components/layout/header";
 import { Toaster } from "@/components/ui/sonner";
 import type { AppTheme } from "@/lib/actions/theme";
 import { SmoothScrollProvider } from "@/components/providers/smoothScrollProvider";
+import { auth } from "@/lib/auth/server";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,6 +41,7 @@ export default async function RootLayout({
     <html lang="en" className={theme} suppressHydrationWarning>
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider forcedTheme={theme}>
+          <Header />
           <AppBackground />
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
           <Toaster richColors position="top-right" />

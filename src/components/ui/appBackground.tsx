@@ -1,7 +1,7 @@
 export function AppBackground() {
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-background">
-      <div className="absolute -left-32 -top-32 h-[38rem] w-[38rem] rounded-full bg-purple-400/55 blur-3xl animate-float-slow dark:bg-purple-700/35" />
+      <div className="absolute -left-32 -top-32 h-152 w-152 rounded-full bg-purple-400/55 blur-3xl animate-float-slow dark:bg-purple-700/35" />
 
       <div className="absolute -right-32 bottom-0 h-[42rem] w-[42rem] rounded-full bg-amber-300/60 blur-3xl animate-float-slower dark:bg-amber-500/25" />
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/themeToggle";
 
-export function SiteHeader() {
+export function header() {
   return (
     <div className="sticky top-0 z-20 px-0 py-4">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(#ffffff33,#ffffff26,#ffffff00)] dark:bg-[linear-gradient(#000,#000000b3,#0000)] backdrop-blur-lg dark:backdrop-blur-lg mask-[linear-gradient(#ffffff,#ffffffb3_55%,#ffffff00)] dark:mask-[linear-gradient(#000,#000000b3_65%,#0000)] h-28" />
@@ -21,11 +21,11 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
 
-          <Button asChild variant="outline" size="sm">
+          <Button asChild variant="outline" size="default">
             <Link href="/login">Log in</Link>
           </Button>
 
-          <Button asChild variant="gold" size="sm">
+          <Button asChild variant="gold" size="default">
             <Link href="/signup">Sign up</Link>
           </Button>
         </div>
