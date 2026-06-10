@@ -2,7 +2,7 @@ import { features } from "@/constants/features";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export function FeaturesSection() {
   return (
-    <section id="features" className='mx-auto max-w-6xl py-20'>
+    <section id="features" className='mx-auto max-w-6xl py-6'>
       <div className="reveal-on-scroll mb-10 max-w-2xl space-y-3">
         <p className="text-sm font-medium uppercase tracking-[0.25em] text-amber-800 dark:text-amber-200">
           Features

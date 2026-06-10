@@ -108,11 +108,6 @@ export function AuthWizard() {
       className="w-full max-w-md overflow-hidden border-amber-500/15 shadow-2xl shadow-amber-950/10"
     >
       <CardHeader className="space-y-3 pb-5">
-        <div className="inline-flex w-fit items-center gap-2 rounded-full border border-amber-500/20 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-800 dark:text-amber-100">
-          <span className="size-1.5 rounded-full bg-amber-500" />
-          Secure Neon Auth
-        </div>
-
         <div className="space-y-1.5">
           <CardTitle className="text-2xl tracking-tight">{title}</CardTitle>
           <CardDescription className="leading-6">{description}</CardDescription>
@@ -173,16 +168,6 @@ export function AuthWizard() {
                 transform: `translateX(-${slideIndex * 33.333333}%)`,
               }}
             >
-              <section className="w-1/3 shrink-0 pr-3">
-                <div className="rounded-[4px] border border-border/60 bg-muted/30 p-4">
-                  <p className="text-sm font-medium">One simple start.</p>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                    We’ll check your email and move you to login or signup
-                    automatically.
-                  </p>
-                </div>
-              </section>
-
               <section className="w-1/3 shrink-0 px-3">
                 <div className="space-y-2">
                   <Label htmlFor="login-password">Password</Label>

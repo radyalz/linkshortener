@@ -2,7 +2,7 @@ import { workflowSteps } from "@/constants/workflowSteps";
 import { Card, CardContent } from "@/components/ui/card";
 export function WorkflowSection() {
   return (
-    <section id="workflow" className='mx-auto max-w-6xl py-20'>
+    <section id="workflow" className='mx-auto max-w-6xl py-6'>
       <Card variant="glass" className="reveal-on-scroll">
         <CardContent className="grid gap-8 p-8 md:grid-cols-3">
           {workflowSteps.map((step) => (

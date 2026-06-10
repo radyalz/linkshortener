@@ -15,7 +15,7 @@ export async function createLinkAction(_prevState: LinkActionState, formData: Fo
   const { data: session } = await auth.getSession();
 
   if (!session?.user) {
-    redirect("/login");
+    redirect("/authentication");
   }
 
   const parsed = createLinkSchema.safeParse({

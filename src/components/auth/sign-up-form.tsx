@@ -46,7 +46,7 @@ export function SignUpForm() {
 
         <p className="mt-4 text-center text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium underline">
+          <Link href="/authentication" className="font-medium underline">
             Log in
           </Link>
         </p>

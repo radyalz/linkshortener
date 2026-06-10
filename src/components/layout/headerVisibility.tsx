@@ -9,7 +9,7 @@ type HeaderVisibilityProps = {
 export function HeaderVisibility({ children }: HeaderVisibilityProps) {
   const pathname = usePathname();
 
-  const isAuthPage = pathname.startsWith("/login") || pathname.startsWith("/signup");
+  const isAuthPage = pathname.startsWith("/authentication");
 
   if (isAuthPage) {
     return null;

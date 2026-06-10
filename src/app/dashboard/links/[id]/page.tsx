@@ -20,7 +20,7 @@ export default async function LinkDetailPage({ params }: LinkDetailPageProps) {
   const { data: session } = await auth.getSession();
 
   if (!session?.user) {
-    redirect("/login");
+    redirect("/authentication");
   }
 
   const { id } = await params;

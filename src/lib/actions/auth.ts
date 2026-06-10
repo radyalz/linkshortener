@@ -90,5 +90,5 @@ export async function signInAction(_prevState: AuthActionState, formData: FormDa
 export async function signOutAction() {
   await auth.signOut();
 
-  redirect("/login");
+  redirect("/");
 }

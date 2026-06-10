@@ -15,7 +15,7 @@ export default async function DashboardPage() {
   const { data: session } = await auth.getSession();
 
   if (!session?.user) {
-    redirect("/login");
+    redirect("/authentication");
   }
 
   const links = await getLinksByUserId(session.user.id);

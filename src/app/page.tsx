@@ -1,18 +1,31 @@
+import { BackToTopButton } from "@/components/layout/backToTopButton";
 import { FeaturesSection } from "@/components/landing/featuresSection";
 import { HeroSection } from "@/components/landing/heroSection";
 import { WorkflowSection } from "@/components/landing/workflowSection";
 import { RevealSection } from "@/components/ui/RevealSection";
-export default function HomePage() {
+import { auth } from "@/lib/auth/server";
+
+export default async function HomePage() {
+  const { data: session } = await auth.getSession();
+
+  const createLinkHref = session?.user ? "/dashboard" : "/authentication";
+
   return (
-    <main className="min-h-screen pb-20 px-6">
+    <main className="min-h-screen px-6 pb-40">
       <RevealSection>
-        <HeroSection />
+        <HeroSection createLinkHref={createLinkHref} />
       </RevealSection>
+
       <RevealSection>
         <FeaturesSection />
       </RevealSection>
+
       <RevealSection>
         <WorkflowSection />
+      </RevealSection>
+
+      <RevealSection>
+        <BackToTopButton />
       </RevealSection>
     </main>
   );
