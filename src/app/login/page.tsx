@@ -1,20 +1,18 @@
-import { redirect } from "next/navigation";
 
-import { LoginForm } from "@/components/auth/login-form";
-import { auth } from "@/lib/auth/server";
+import { AuthWizard } from "@/components/auth/authWizard";
 
 export const dynamic = "force-dynamic";
 
-export default async function LoginPage() {
-  const { data: session } = await auth.getSession();
+type LoginPageProps = {
+  searchParams: Promise<{
+    mode?: string;
+  }>;
+};
 
-  if (session?.user) {
-    redirect("/dashboard");
-  }
-
+export default function LoginPage() {
   return (
     <main className="flex min-h-screen items-center justify-center p-6">
-      <LoginForm />
+      <AuthWizard />
     </main>
   );
 }

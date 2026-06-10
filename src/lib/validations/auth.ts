@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+export const checkEmailSchema = z.object({
+  email: z.string().trim().email("Enter a valid email address."),
+});
+
 export const signUpSchema = z.object({
   name: z.string().trim().min(1, "Name is required."),
   email: z.string().trim().email("Enter a valid email address."),

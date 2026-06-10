@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { Moon, Sun } from "lucide-react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 import { setThemeAction, type AppTheme } from "@/lib/actions/theme";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ function readThemeFromDom(): AppTheme {
 }
 
 export function ThemeToggle() {
-  const router = useRouter();
+  // const router = useRouter();
   const [theme, setTheme] = useState<AppTheme>("dark");
   const [isPending, startTransition] = useTransition();
 
@@ -34,7 +34,7 @@ export function ThemeToggle() {
 
     startTransition(async () => {
       await setThemeAction(nextTheme);
-      router.refresh();
+      // router.refresh();
     });
   }
 

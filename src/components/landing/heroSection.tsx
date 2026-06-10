@@ -23,7 +23,6 @@ export function HeroSection() {
             <Button asChild variant="gold" size="lg">
               <Link href="/signup">Create your first link</Link>
             </Button>
-
             <Button asChild variant="outline" size="lg">
               <Link href="/login">Log in</Link>
             </Button>
