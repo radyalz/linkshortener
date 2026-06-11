@@ -1,7 +1,5 @@
 "use client";
-
-import { useActionState, useEffect, useState } from "react";
-
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { checkEmailAction, signInAction, signUpAction } from "@/lib/actions/auth";
 import { initialAuthActionState, initialEmailCheckActionState } from "@/lib/actions/auth-state";
 import { CardContent } from "@/components/ui/card";
@@ -27,10 +25,12 @@ export function AuthWizardClient() {
       return;
     }
 
-    setEmail(emailState.data.email);
-    setSubmittedStep(null);
-    setFormResetKey((key) => key + 1);
-    setStep(emailState.data.mode);
+    startTransition(() => {
+      setEmail(emailState.data.email);
+      setSubmittedStep(null);
+      setFormResetKey((key) => key + 1);
+      setStep(emailState.data.mode);
+    });
   }, [emailState.data]);
 
   const isPending = isCheckingEmail || isLoggingIn || isSigningUp;

@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useTransition } from "react";
 import { Moon, Sun } from "lucide-react";
-// import { useRouter } from "next/navigation";
 
 import { setThemeAction, type AppTheme } from "@/lib/actions/theme";
 import { Button } from "@/components/ui/button";
@@ -16,12 +15,13 @@ function readThemeFromDom(): AppTheme {
 }
 
 export function ThemeToggle() {
-  // const router = useRouter();
   const [theme, setTheme] = useState<AppTheme>("dark");
-  const [isPending, startTransition] = useTransition();
+  const [isPending, startThemeTransition] = useTransition();
 
   useEffect(() => {
-    setTheme(readThemeFromDom());
+    queueMicrotask(() => {
+      setTheme(readThemeFromDom());
+    });
   }, []);
 
   function handleToggle() {
@@ -32,16 +32,22 @@ export function ThemeToggle() {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(nextTheme);
 
-    startTransition(async () => {
+    startThemeTransition(async () => {
       await setThemeAction(nextTheme);
-      // router.refresh();
     });
   }
 
   const isDark = theme === "dark";
 
   return (
-    <Button type="button" variant="outline" size="icon" onClick={handleToggle} disabled={isPending} aria-label="Toggle color theme">
+    <Button
+      type="button"
+      variant="outline"
+      size="icon"
+      onClick={handleToggle}
+      disabled={isPending}
+      aria-label="Toggle color theme"
+    >
       {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
     </Button>
   );

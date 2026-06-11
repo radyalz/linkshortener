@@ -26,6 +26,7 @@ export async function getLinkBySlug(slug: string) {
     .select()
     .from(links)
     .where(eq(links.slug, slug))
+    .orderBy(desc(links.createdAt))
     .limit(1);
 
   return link ?? null;
@@ -35,6 +36,16 @@ export async function createLink(data: NewLink) {
   const [link] = await db.insert(links).values(data).returning();
 
   return link;
+}
+
+export async function getLinkBySlugForUser(slug: string, userId: string) {
+  const [link] = await db
+    .select()
+    .from(links)
+    .where(and(eq(links.slug, slug), eq(links.userId, userId)))
+    .limit(1);
+
+  return link ?? null;
 }
 
 export async function deleteLinkForUser(linkId: string, userId: string) {

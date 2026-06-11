@@ -6,10 +6,22 @@ import { redirect } from "next/navigation";
 
 import type { DeleteLinkActionResult, LinkActionState } from "@/lib/actions/link-state";
 import { auth } from "@/lib/auth/server";
-import { createLink, deleteLinkForUser, getLinkBySlug } from "@/lib/db/queries";
+import { createLink, deleteLinkForUser, getLinkBySlugForUser } from "@/lib/db/queries";
 import { createLinkSchema, deleteLinkSchema } from "@/lib/validations/links";
 
 const generateSlug = customAlphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 6);
+async function generateUniqueSlugForUser(userId: string) {
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const slug = generateSlug();
+    const existingLink = await getLinkBySlugForUser(slug, userId);
+
+    if (!existingLink) {
+      return slug;
+    }
+  }
+
+  return generateSlug();
+}
 
 export async function createLinkAction(_prevState: LinkActionState, formData: FormData): Promise<LinkActionState> {
   const { data: session } = await auth.getSession();
@@ -31,14 +43,14 @@ export async function createLinkAction(_prevState: LinkActionState, formData: Fo
     };
   }
 
-  const slug = parsed.data.slug ?? generateSlug();
+  const slug = parsed.data.slug ?? (await generateUniqueSlugForUser(session.user.id));
 
-  const existingLink = await getLinkBySlug(slug);
+  const existingLink = await getLinkBySlugForUser(slug, session.user.id);
 
   if (existingLink) {
     return {
       data: null,
-      error: "That slug is already taken. Please choose another one.",
+      error: "You already have a link with that slug. Please choose another one.",
     };
   }
 

@@ -7,7 +7,6 @@ import { Header } from "@/components/layout/header";
 import { Toaster } from "@/components/ui/sonner";
 import type { AppTheme } from "@/lib/actions/theme";
 import { SmoothScrollProvider } from "@/components/providers/smoothScrollProvider";
-import { auth } from "@/lib/auth/server";
 import "./globals.css";
 
 const geistSans = Geist({

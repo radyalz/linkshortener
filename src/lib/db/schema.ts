@@ -15,7 +15,11 @@ export const links = pgTable(
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [uniqueIndex("links_slug_unique").on(table.slug), index("links_user_id_idx").on(table.userId)],
+  (table) => [
+    uniqueIndex("links_user_id_slug_unique").on(table.userId, table.slug),
+    index("links_slug_idx").on(table.slug),
+    index("links_user_id_idx").on(table.userId),
+  ],
 );
 
 export const clicks = pgTable(

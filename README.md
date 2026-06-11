@@ -191,7 +191,7 @@ For compatibility with the brief, `/login` redirects to `/authentication`.
 
 ### Slug uniqueness
 
-The brief says custom slugs should be unique per user. I made slugs globally unique instead because the public redirect route is `/r/[slug]` and does not include a user identifier. If two users had the same slug, the redirect route would not know which destination to use. Global uniqueness avoids that ambiguity and keeps short URLs simple.
+Custom slugs are unique per user, matching the brief. Because the public redirect route is `/r/[slug]`, duplicate slugs across different users can theoretically make the redirect route ambiguous. For this test project I kept the public route simple and resolved slugs through the existing redirect lookup. In a production version, I would either keep slugs globally unique or introduce a user namespace in the public short URL.
 
 ### Server Actions and DB access
 
