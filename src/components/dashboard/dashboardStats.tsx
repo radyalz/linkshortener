@@ -25,7 +25,7 @@ function StatCard({ label, value, icon }: { label: string; value: number; icon: 
       <CardContent className="flex items-center justify-between gap-4 p-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</p>
-          <p className="mt-1 text-2xl font-bold tracking-tight">{value.toLocaleString()}</p>
+          <p lang="eng" className="mt-1 text-2xl font-bold tracking-tight">{value}</p>
         </div>
 
         <div className="flex size-10 items-center justify-center rounded-full border border-amber-500/20 bg-amber-500/10 text-amber-700 dark:text-amber-200">{icon}</div>

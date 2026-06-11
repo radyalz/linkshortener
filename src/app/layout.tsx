@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/themeProvider";
 import { AppBackground } from "@/components/ui/appBackground";
 import { Header } from "@/components/layout/header";
@@ -17,6 +17,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-vazirmatn",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +43,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={theme} suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} antialiased`}>
         <ThemeProvider forcedTheme={theme}>
           <Header />
           <AppBackground />
