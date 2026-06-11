@@ -6,7 +6,7 @@ Authenticated users can create short links, manage them from a dashboard, copy s
 
 ## Deployed URL
 
-https://your-vercel-url.vercel.app
+https://linkshortener-radmanalizadeh.vercel.app/
 
 ## GitHub Repo
 
