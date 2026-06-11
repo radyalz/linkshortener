@@ -21,15 +21,17 @@ export function AuthWizardClient() {
   const [signupState, signupFormAction, isSigningUp] = useActionState(signUpAction, initialAuthActionState);
 
   useEffect(() => {
-    if (!emailState.data) {
+    const emailCheckData = emailState.data;
+
+    if (!emailCheckData) {
       return;
     }
 
     startTransition(() => {
-      setEmail(emailState.data.email);
+      setEmail(emailCheckData.email);
       setSubmittedStep(null);
       setFormResetKey((key) => key + 1);
-      setStep(emailState.data.mode);
+      setStep(emailCheckData.mode);
     });
   }, [emailState.data]);
 
