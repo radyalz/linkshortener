@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 function getTheme(value: string | undefined): AppTheme {
   return value === "light" || value === "dark" ? value : "dark";
 }
-
+export const dynamic = "force-dynamic";
 export default async function RootLayout({
   children,
 }: Readonly<{

@@ -4,7 +4,7 @@ import { HeroSection } from "@/components/landing/heroSection";
 import { WorkflowSection } from "@/components/landing/workflowSection";
 import { RevealSection } from "@/components/ui/RevealSection";
 import { auth } from "@/lib/auth/server";
-
+export const dynamic = "force-dynamic";
 export default async function HomePage() {
   const { data: session } = await auth.getSession();
 
