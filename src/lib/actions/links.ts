@@ -69,7 +69,7 @@ export async function deleteLinkAction(formData: FormData): Promise<DeleteLinkAc
   const { data: session } = await auth.getSession();
 
   if (!session?.user) {
-    redirect("/login");
+    redirect("/authentication");
   }
 
   const parsed = deleteLinkSchema.safeParse({
