@@ -21,10 +21,19 @@ type ClicksChartProps = {
 export function ClicksChart({ data }: ClicksChartProps) {
   return (
     <ChartContainer config={chartConfig} className="h-[260px] w-full">
-      <BarChart accessibilityLayer data={data}>
+      <BarChart
+        accessibilityLayer
+        data={data}
+        margin={{
+          top: 8,
+          right: 8,
+          left: 0,
+          bottom: 0,
+        }}
+      >
         <CartesianGrid vertical={false} />
 
-        <XAxis dataKey="day" tickLine={false} axisLine={false} tickMargin={8} />
+        <XAxis dataKey="day" tickLine={false} axisLine={false} tickMargin={8} interval={0} minTickGap={0} />
 
         <YAxis allowDecimals={false} tickLine={false} axisLine={false} />
 

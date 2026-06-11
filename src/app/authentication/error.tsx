@@ -1,15 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { RouteErrorState } from "@/components/layout/routeErrorState";
 
-export default function LoginError({ reset }: { error: Error; reset: () => void }) {
+export default function AuthenticationError({
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
   return (
-    <main className="flex min-h-screen items-center justify-center p-6">
-      <div className="max-w-md space-y-4 text-center">
-        <h1 className="text-2xl font-semibold">Something went wrong</h1>
-        <p className="text-muted-foreground">Could not load the login page.</p>
-        <Button onClick={reset}>Try again</Button>
-      </div>
-    </main>
+    <RouteErrorState
+      title="Could not load authentication"
+      description="Something went wrong while opening the authentication wizard."
+      reset={reset}
+      backHref="/"
+      backLabel="Go home"
+    />
   );
 }

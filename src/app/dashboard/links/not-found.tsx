@@ -1,10 +1,10 @@
 import { RouteNotFoundState } from "@/components/layout/routeNotFoundState";
 
-export default function LinkDetailNotFound() {
+export default function DashboardLinksNotFound() {
   return (
     <RouteNotFoundState
-      title="Link not found"
-      description="This short link does not exist, was deleted, or does not belong to your account."
+      title="Link page not found"
+      description="The link management page you requested could not be found."
       primaryHref="/dashboard"
       primaryLabel="Back to dashboard"
       secondaryHref="/"

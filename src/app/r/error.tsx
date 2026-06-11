@@ -2,7 +2,7 @@
 
 import { RouteErrorState } from "@/components/layout/routeErrorState";
 
-export default function ShortLinkError({
+export default function RedirectRouteError({
   reset,
 }: {
   error: Error;
@@ -11,7 +11,7 @@ export default function ShortLinkError({
   return (
     <RouteErrorState
       title="Redirect failed"
-      description="Something went wrong while opening this short link."
+      description="Something went wrong while opening this short link route."
       reset={reset}
       backHref="/"
       backLabel="Go home"

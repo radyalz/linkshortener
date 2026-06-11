@@ -74,32 +74,44 @@ export async function recordClick(linkId: string) {
   return updatedLink ?? null;
 }
 
+function formatChartDay(isoDay: string) {
+  const [year, month, day] = isoDay.split("-").map(Number);
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
 export async function getClicksPerDayForLastSevenDays(linkId: string) {
-  const startDate = new Date();
-  startDate.setDate(startDate.getDate() - 6);
-  startDate.setHours(0, 0, 0, 0);
+  const now = new Date();
+
+  const startDate = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 6),
+  );
 
   const rows = await db
     .select({
-      day: sql<string>`to_char(date_trunc('day', ${clicks.clickedAt}), 'YYYY-MM-DD')`,
+      isoDay: sql<string>`to_char(date_trunc('day', ${clicks.clickedAt} AT TIME ZONE 'UTC'), 'YYYY-MM-DD')`,
       total: count(clicks.id),
     })
     .from(clicks)
     .where(and(eq(clicks.linkId, linkId), gte(clicks.clickedAt, startDate)))
-    .groupBy(sql`date_trunc('day', ${clicks.clickedAt})`)
-    .orderBy(sql`date_trunc('day', ${clicks.clickedAt})`);
+    .groupBy(sql`date_trunc('day', ${clicks.clickedAt} AT TIME ZONE 'UTC')`)
+    .orderBy(sql`date_trunc('day', ${clicks.clickedAt} AT TIME ZONE 'UTC')`);
 
-  const totalsByDay = new Map(rows.map((row) => [row.day, row.total]));
+  const totalsByDay = new Map(rows.map((row) => [row.isoDay, row.total]));
 
   return Array.from({ length: 7 }, (_, index) => {
     const date = new Date(startDate);
-    date.setDate(startDate.getDate() + index);
+    date.setUTCDate(startDate.getUTCDate() + index);
 
-    const day = date.toISOString().slice(0, 10);
+    const isoDay = date.toISOString().slice(0, 10);
 
     return {
-      day,
-      clicks: totalsByDay.get(day) ?? 0,
+      day: formatChartDay(isoDay),
+      clicks: totalsByDay.get(isoDay) ?? 0,
     };
   });
 }

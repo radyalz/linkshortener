@@ -1,10 +1,10 @@
 import { RouteNotFoundState } from "@/components/layout/routeNotFoundState";
 
-export default function ShortLinkNotFound() {
+export default function RedirectNotFound() {
   return (
     <RouteNotFoundState
       title="Short link not found"
-      description="The short link you opened does not exist or may have been deleted."
+      description="This short link route does not exist. Check the URL and try again."
       primaryHref="/"
       primaryLabel="Go home"
       secondaryHref="/dashboard"
